@@ -17,7 +17,7 @@ import pymysql
 pymysql.install_as_MySQLdb()
 
 # 本机的ssh免密用户
-LOCAL_SSH_USER = 'usera'
+LOCAL_SSH_USER = 'lqs'
 KEY_FILE = '/home/{}/.ssh/id_rsa'.format(LOCAL_SSH_USER)
 if not os.path.isfile(KEY_FILE):
     print('用户{}的秘钥不存在，请提前生成'.format(LOCAL_SSH_USER))
@@ -243,7 +243,7 @@ STATIC_URL = '/static/'
 
 # LDAP
 LDAP = {
-    'host': "127.0.0.1",  # LDAP服务器地址
+    'host': "39.97.30.209",  # LDAP服务器地址
     'port': 389  # LDAP端口
 }
 
