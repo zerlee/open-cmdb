@@ -3,20 +3,28 @@ Django rest framework + vue 的CMDB项目
 ## 开发步骤
 
 ### linux下安装python3和一些依赖
+```
 yum install python3 gcc python36-devel python-ldap  openldap openldap24-libs openldap-clients openldap-devel openssl-devel
+```
 
 ### 安装node和npm
+```
 cd /opt/software
 wget https://nodejs.org/dist/v10.9.0/node-v10.9.0-linux-x64.tar.xz 
 tar xf  node-v10.9.0-linux-x64.tar.xz      
 ln -s /opt/software/node-v10.9.0-linux-x64/bin/npm   /usr/local/bin/ 
 ln -s /opt/software/node-v10.9.0-linux-x64/bin/node   /usr/local/bin/
+```
 
 ### 创建虚拟环境
 在open-cmdb目录下
+```
 python3 -m venv venv
+```
 开启虚拟环境
+```
 . venv/bin/active
+```
 
 ### 后端调试
 
@@ -54,17 +62,6 @@ python manage.py runserver 0.0.0.0:8000
 8、打开浏览器查看效果
 
 ### 在frontend目录下 安装前端vue项目依赖的库
-
-
-
-
-
-## 部署
-- 推荐容器化部署
-```bash
-docker pull myide/opencmdb:v1
-docker run -itd --name op1 --network host opencmdb:v1
-```
 
 
 
