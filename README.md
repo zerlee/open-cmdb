@@ -76,9 +76,10 @@ python manage.py runserver 0.0.0.0:8000
 ```
 npm config set registry https://registry.npm.taobao.org
 ```
+2、安装vue-cli
 npm install --global vue-cli
 
-2、安装前端依赖的库，在frontend目录下执行
+3、安装前端依赖的库，在frontend目录下执行
 ```
 npm install 
 ```
@@ -87,14 +88,14 @@ npm install
 ```
 chown -R root:root /usr/local/node/
 ```
-3、修改/root/open-cmdb/frontend/src/config/index.js中的baseurl为下
+4、修改/root/open-cmdb/frontend/src/config/index.js中的baseurl为下
 ```
   baseUrl: {
     dev: 'http://192.168.2.74:8000', //服务器的IP，端口是python后端的端口
     pro: 'http://192.168.2.74:8000'
   },
 ```
-4、在frontend目录下执行npm run dev,这时就可以打开浏览器了，如果你修改前端代码的话，会自动重新运行，效果会即时显示
+5、在frontend目录下执行npm run dev,这时就可以打开浏览器了，如果你修改前端代码的话，会自动重新运行，效果会即时显示
 
 
 
