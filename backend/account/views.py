@@ -1,16 +1,18 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.contrib.auth.models import Group
+from rest_framework import serializers
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
 from utils.baseviews import BaseView
 from utils.permissions import IsSuperUser
 from utils.unitaryauth import UnitaryAuth
 from utils.wrappers import permission_admin
 
-from .serializers import *
+from .models import User
+from .serializers import GroupSerializer, UserSerializer
 
 
 class GroupViewSet(BaseView):
@@ -64,9 +66,11 @@ class UnitaryAuthView(UnitaryAuth, APIView):
             raise AuthenticationFailed
         request.data.update({'is_staff': True})
         serializer = self.serializer_class(data=request.data)
-        user_query = self.serializer_class.Meta.model.objects.filter(username=request.data.get('username'))
+        user_query = self.serializer_class.Meta.model.objects.filter(
+            username=request.data.get('username'))
         if user_query:
-            serializer = self.serializer_class(user_query[0], data=request.data)
+            serializer = self.serializer_class(user_query[0],
+                                               data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)

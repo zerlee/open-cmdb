@@ -11,9 +11,10 @@ yum install python3 gcc python36-devel python-ldap  openldap openldap24-libs ope
 ```
 cd /opt/software
 wget https://nodejs.org/dist/v10.9.0/node-v10.9.0-linux-x64.tar.xz 
-tar xf  node-v10.9.0-linux-x64.tar.xz      
-ln -s /opt/software/node-v10.9.0-linux-x64/bin/npm   /usr/local/bin/ 
-ln -s /opt/software/node-v10.9.0-linux-x64/bin/node   /usr/local/bin/
+tar xf  node-v10.9.0-linux-x64.tar.xz
+mv /opt/software/node-v10.9.0-linux-x64   /usr/local/node
+echo "export PATH=$PATH:/usr/local/node/bin" >> /etc/profile
+source /etc/profile
 ```
 
 ### 创建虚拟环境
