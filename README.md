@@ -1,6 +1,6 @@
 Django rest framework + vue 的CMDB项目
 
-## 开发步骤
+## 后端开发调试
 
 1、linux下安装python3和一些依赖
 ```
@@ -126,32 +126,3 @@ npm run dev
 6、打开浏览器，登录，查看效果
 
 7、如果你修改前端代码的话，不用重新运行，改动效果会立即显示
-
-
-
-
-
-1、配置npm源
-```
-npm config set registry https://registry.npm.taobao.org
-```
-2、安装vue-cli
-npm install --global vue-cli
-
-3、安装前端依赖的库，在frontend目录下执行
-```
-npm install 
-```
-如果报错`Error: EACCES: permission denied, open`,
-检查node安装路径所属用户，如果是500，则改为root
-```
-chown -R root:root /usr/local/node/
-```
-4、修改/root/open-cmdb/frontend/src/config/index.js中的baseurl为下
-```
-  baseUrl: {
-    dev: 'http://192.168.2.74:8000', //服务器的IP，端口是python后端的端口
-    pro: 'http://192.168.2.74:8000'
-  },
-```
-5、在frontend目录下执行npm run dev,这时就可以打开浏览器了，如果你修改前端代码的话，会自动重新运行，效果会即时显示
