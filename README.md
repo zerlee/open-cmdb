@@ -30,6 +30,10 @@ python3 -m venv venv
 
 1、 在虚拟环境开启的情况下，在backend目录下 安装后端python项目依赖的库
 ```
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pip -U
+
+pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+
 pip install -r requirements.txt
 ```
 2、在linux上创建用户lqs
@@ -61,7 +65,30 @@ python manage.py runserver 0.0.0.0:8000
 ```
 8、打开浏览器查看效果
 
-### 在frontend目录下 安装前端vue项目依赖的库
+### 前端调试
+1、配置npm源
+```
+npm config set registry https://registry.npm.taobao.org
+```
+npm install --global vue-cli
+
+2、安装前端依赖的库，在frontend目录下执行
+```
+npm install 
+```
+如果报错`Error: EACCES: permission denied, open`,
+检查node安装路径所属用户，如果是500，则改为root
+```
+chown -R root:root /usr/local/node/
+```
+3、修改/root/open-cmdb/frontend/src/config/index.js中的baseurl为下
+```
+  baseUrl: {
+    dev: 'http://192.168.2.74:8000', //服务器的IP，端口是python后端的端口
+    pro: 'http://192.168.2.74:8000'
+  },
+```
+4、在frontend目录下执行npm run dev,这时就可以打开浏览器了，如果你修改前端代码的话，会自动重新运行，效果会即时显示
 
 
 
