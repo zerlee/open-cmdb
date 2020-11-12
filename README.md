@@ -2,12 +2,86 @@ Django rest framework + vue 的CMDB项目
 
 ## 开发步骤
 
-### linux下安装python3和一些依赖
+1、linux下安装python3和一些依赖
 ```
 yum install python3 gcc python36-devel python-ldap  openldap openldap24-libs openldap-clients openldap-devel openssl-devel
 ```
 
-### 安装node和npm
+2、 创建虚拟环境
+
+在open-cmdb项目根目录下
+
+```
+python3 -m venv venv
+```
+
+开启虚拟环境
+
+```
+. venv/bin/active
+```
+
+3、 在虚拟环境开启的情况下，在backend目录下 安装后端python项目依赖的库
+
+```
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pip -U
+
+pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+
+pip install -r requirements.txt
+```
+
+4、在linux上创建用户lqs
+
+```
+useradd lqs
+```
+
+切换到lqs用户下，创建用户密钥
+
+```
+su lqs
+ssh-keygen -t rsa，按三次回车
+```
+
+5、修改setting文件中的用户名usera为lqs
+
+6、修改setting文件中的ldap服务器IP（非必须）
+
+7、修改数据库为mysql，更改其中的连接信息
+
+使用mysql的原因是，对mysql的使用更熟悉
+
+8、连接mysql创建数据库cmdb
+
+9、执行数据库迁移
+
+```
+python manage.py makemigrations
+python manage.py migrate
+```
+10、创建后台admin管理界面的登录账号
+
+```
+python manage.py createsuperuser
+```
+11、启动服务器
+
+```
+python manage.py runserver 0.0.0.0:8000
+```
+12、打开浏览器,登录，查看效果
+
+```
+ip:8000/admin
+```
+
+13、修改后端代码，不用重新运行，即可即时显示改动效果
+
+## 前端开发调试
+
+1、安装node和npm
+
 ```
 cd /opt/software
 wget https://nodejs.org/dist/v10.9.0/node-v10.9.0-linux-x64.tar.xz 
@@ -17,62 +91,46 @@ echo "export PATH=$PATH:/usr/local/node/bin" >> /etc/profile
 source /etc/profile
 ```
 
-### 创建虚拟环境
-在open-cmdb目录下
+2、配置npm源
+
 ```
-python3 -m venv venv
-```
-开启虚拟环境
-```
-. venv/bin/active
+npm config set registry https://registry.npm.taobao.org
 ```
 
-### 后端调试
+3、安装前端依赖的库，在frontend目录下执行
 
-1、 在虚拟环境开启的情况下，在backend目录下 安装后端python项目依赖的库
 ```
-pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pip -U
+npm install 
+```
+如果报错`Error: EACCES: permission denied, open`,
+检查node安装路径所属用户，如果是500，则改为root
 
-pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+```
+chown -R root:root /usr/local/node/
+```
+4、修改/root/open-cmdb/frontend/src/config/index.js中的baseurl为下
 
-pip install -r requirements.txt
 ```
-2、在linux上创建用户lqs
+  baseUrl: {
+    dev: 'http://192.168.2.74:8000', //服务器的IP，端口是python后端的端口
+    pro: 'http://192.168.2.74:8000'
+  },
 ```
-useradd lqs
-```
-切换到lqs用户下，创建用户密钥
-```
-su lqs
-ssh-keygen -t rsa，按三次回车
-```
+5、启动前端
 
-3、修改setting文件中的用户名usera为lqs
+在frontend目录下执行
 
-4、修改setting文件中的ldap服务器IP
+```
+npm run dev
+```
+6、打开浏览器，登录，查看效果
 
-5、修改数据库为mysql，更改其中的连接信息
+7、如果你修改前端代码的话，不用重新运行，改动效果会立即显示
 
-使用mysql的原因是，对mysql的使用更熟悉
 
-6、创建好数据库
 
-7、执行数据库迁移
-```
-python manage.py makemigrations
-python manage.py migrate
-```
-6、创建后台admin管理界面的登录账号
-```
-python manage.py createsuperuser
-```
-7、启动服务器
-```
-python manage.py runserver 0.0.0.0:8000
-```
-8、打开浏览器查看效果
 
-### 前端调试
+
 1、配置npm源
 ```
 npm config set registry https://registry.npm.taobao.org
@@ -97,7 +155,3 @@ chown -R root:root /usr/local/node/
   },
 ```
 5、在frontend目录下执行npm run dev,这时就可以打开浏览器了，如果你修改前端代码的话，会自动重新运行，效果会即时显示
-
-
-
-
