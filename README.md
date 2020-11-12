@@ -1,15 +1,16 @@
-Django rest framework + vue 的CMDB项目
+Django rest framework + vue 的 CMDB 项目
 
 ## 后端开发调试
 
-1、linux下安装python3和一些依赖
+1、linux 下安装 python3 和一些依赖
+
 ```
 yum install python3 gcc python36-devel python-ldap  openldap openldap24-libs openldap-clients openldap-devel openssl-devel
 ```
 
 2、 创建虚拟环境
 
-在open-cmdb项目根目录下
+在 open-cmdb 项目根目录下
 
 ```
 python3 -m venv venv
@@ -21,7 +22,7 @@ python3 -m venv venv
 . venv/bin/active
 ```
 
-3、 在虚拟环境开启的情况下，在backend目录下 安装后端python项目依赖的库
+3、 在虚拟环境开启的情况下，在 backend 目录下 安装后端 python 项目依赖的库
 
 ```
 pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pip -U
@@ -31,28 +32,28 @@ pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 pip install -r requirements.txt
 ```
 
-4、在linux上创建用户lqs
+4、在 linux 上创建用户 lqs
 
 ```
 useradd lqs
 ```
 
-切换到lqs用户下，创建用户密钥
+切换到 lqs 用户下，创建用户密钥
 
 ```
 su lqs
 ssh-keygen -t rsa，按三次回车
 ```
 
-5、修改setting文件中的用户名usera为lqs
+5、修改 setting 文件中的用户名 usera 为 lqs
 
-6、修改setting文件中的ldap服务器IP（非必须）
+6、修改 setting 文件中的 ldap 服务器 IP（非必须）
 
-7、修改数据库为mysql，更改其中的连接信息
+7、修改数据库为 mysql，更改其中的连接信息
 
-使用mysql的原因是，对mysql的使用更熟悉
+使用 mysql 的原因是，对 mysql 的使用更熟悉
 
-8、连接mysql创建数据库cmdb
+8、连接 mysql 创建数据库 cmdb
 
 9、执行数据库迁移
 
@@ -60,55 +61,60 @@ ssh-keygen -t rsa，按三次回车
 python manage.py makemigrations
 python manage.py migrate
 ```
-10、创建后台admin管理界面的登录账号
+
+10、创建后台 admin 管理界面的登录账号
 
 ```
 python manage.py createsuperuser
 ```
+
 11、启动服务器
 
 ```
 python manage.py runserver 0.0.0.0:8000
 ```
+
 12、打开浏览器,登录，查看效果
 
 ```
 ip:8000/admin
 ```
 
-13、修改后端代码，不用重新运行，即可即时显示改动效果
+13、如果你修改后端代码的话，不用重新运行，改动效果会立即显示
 
 ## 前端开发调试
 
-1、安装node和npm
+1、安装 node 和 npm
 
 ```
 cd /opt/software
-wget https://nodejs.org/dist/v10.9.0/node-v10.9.0-linux-x64.tar.xz 
+wget https://nodejs.org/dist/v10.9.0/node-v10.9.0-linux-x64.tar.xz
 tar xf  node-v10.9.0-linux-x64.tar.xz
 mv /opt/software/node-v10.9.0-linux-x64   /usr/local/node
 echo "export PATH=$PATH:/usr/local/node/bin" >> /etc/profile
 source /etc/profile
 ```
 
-2、配置npm源
+2、配置 npm 源
 
 ```
 npm config set registry https://registry.npm.taobao.org
 ```
 
-3、安装前端依赖的库，在frontend目录下执行
+3、安装前端依赖的库，在 frontend 目录下执行
 
 ```
-npm install 
+npm install
 ```
+
 如果报错`Error: EACCES: permission denied, open`,
-检查node安装路径所属用户，如果是500，则改为root
+检查 node 安装路径所属用户，如果是 500，则改为 root
 
 ```
 chown -R root:root /usr/local/node/
 ```
-4、修改/root/open-cmdb/frontend/src/config/index.js中的baseurl为下
+
+4、修改/root/open-cmdb/frontend/src/config/index.js 中的 baseurl 为下
 
 ```
   baseUrl: {
@@ -116,13 +122,15 @@ chown -R root:root /usr/local/node/
     pro: 'http://192.168.2.74:8000'
   },
 ```
+
 5、启动前端
 
-在frontend目录下执行
+在 frontend 目录下执行
 
 ```
 npm run dev
 ```
+
 6、打开浏览器，登录，查看效果
 
 7、如果你修改前端代码的话，不用重新运行，改动效果会立即显示
