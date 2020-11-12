@@ -10,7 +10,7 @@ class User(AbstractUser):
         ('developer', u'研发'),
         ('operation',u'运维')
     )
-    role = models.CharField(max_length=32, default='developer', choices=ROLES, blank=True)
+    role = models.CharField(max_length=32, default='developer', choices=ROLES)
     remark = models.CharField(max_length=128, default='', blank=True)
 
     class Meta:

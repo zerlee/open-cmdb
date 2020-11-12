@@ -47,9 +47,9 @@
           <Col span="22">
             <Form ref="createForm" :model="createForm" :rules="ruleForm" :label-width="100">
               <FormItem label="业务线名：" prop="name">
-                <Input v-model="createForm.name" placeholder="机柜"></Input>
+                <Input v-model="createForm.name" placeholder="业务线名"></Input>
               </FormItem>
-              <FormItem label="相关用户：">
+              <FormItem label="负责人：" prop="verbose_name">
                 <Select v-model="createForm.users" filterable multiple>
                   <Option v-for="item in userList" :value="item.id" :key="item.id">{{ item.username }}</Option>
                 </Select>
@@ -76,7 +76,7 @@
               <FormItem label="业务线名：" prop="name">
                 <Input v-model="updateForm.name" placeholder="业务线名"></Input>
               </FormItem>
-              <FormItem label="相关用户：">
+              <FormItem label="负责人：" prop="verbose_name">
                 <Select v-model="updateForm.users" filterable multiple>
                   <Option v-for="item in userList" :value="item.id" :key="item.id">{{ item.username }}</Option>
                 </Select>
@@ -176,34 +176,38 @@
           title: '业务线名',
           key: 'name'
         },
+        // {
+        //   title: '项目列表',
+        //   render: (h, params) => {
+        //     let data = params.row.projects
+        //     if (data.length == 0) {
+        //       var subelm = []
+        //     } else {
+        //       var subelm = [
+        //         h(Button, {
+        //             props: {
+        //               type: 'info',
+        //               size: 'small'
+        //             },
+        //             style: {
+        //               marginRight: '12px'
+        //             },
+        //             on: {
+        //               click: () => {
+        //                 this.showProject.modal = true
+        //                 this.showProject.title = params.row.name + ' 业务线'
+        //                 this.showProject.data = data
+        //               }
+        //             }
+        //         }, '详情' + ' (' + data.length + ')')
+        //       ]
+        //     }
+        //     return h('div', {}, subelm)
+        //   }
+        // },
         {
-          title: '项目列表',
-          render: (h, params) => {
-            let data = params.row.projects
-            if (data.length == 0) {
-              var subelm = []
-            } else {
-              var subelm = [
-                h(Button, {
-                    props: {
-                      type: 'info',
-                      size: 'small'
-                    },
-                    style: {
-                      marginRight: '12px'
-                    },
-                    on: {
-                      click: () => {
-                        this.showProject.modal = true
-                        this.showProject.title = params.row.name + ' 业务线'
-                        this.showProject.data = data
-                      }
-                    }
-                }, '详情' + ' (' + data.length + ')')
-              ]
-            }
-            return h('div', {}, subelm)
-          }
+          title: '负责人',
+          key: 'verbose_name'
         },
         {
           title: '备注',

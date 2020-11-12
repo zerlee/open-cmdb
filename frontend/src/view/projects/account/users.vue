@@ -190,6 +190,10 @@
             value: 'developer_supremo',
             label: '研发总监'
           },
+          {
+            value: 'operation',
+            label: '运维'
+          },
         ],
         baseAuth:['is_active', 'is_staff', 'is_superuser'],
         // 创建用户数据
@@ -244,7 +248,8 @@
             const roleMap = {
                 developer:'研发',
                 developer_manager:'研发经理',
-                developer_supremo:'研发总监'
+                developer_supremo:'研发总监',
+                operation:'运维'
             }
             let role = params.row.role
             return h('span', {}, roleMap[role])

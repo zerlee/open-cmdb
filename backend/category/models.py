@@ -58,7 +58,7 @@ class Server(BaseModel):
 
 
 class BusinessLine(BaseModel):
-    users = models.ManyToManyField(User, default='', null=True, blank=True, verbose_name='相关用户')
+    users = models.ManyToManyField(User, default='', null=True, blank=True, verbose_name='负责人')
 
     class Meta:
         ordering = ['-id']
