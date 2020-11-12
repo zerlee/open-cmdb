@@ -50,7 +50,13 @@ ssh-keygen -t rsa，按三次回车
 
 4、修改setting文件中的ldap服务器IP
 
-5、执行数据库迁移
+5、修改数据库为mysql，更改其中的连接信息
+
+使用mysql的原因是，对mysql的使用更熟悉
+
+6、创建好数据库
+
+7、执行数据库迁移
 ```
 python manage.py makemigrations
 python manage.py migrate
